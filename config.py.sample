@@ -1,0 +1,11 @@
+username = "example"
+password = "example"
+userid = 1234
+your_email = "mr@example.org"
+strava_upload_email = "upload@strava.com"
+download_dir = _os.path.expanduser("~/Dropbox/from_garmin_connect")
+try:
+    _os.makedirs(download_dir)
+except OSError, e:
+    if e.errno != 17:
+        raise
