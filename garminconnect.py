@@ -1,6 +1,6 @@
 import os
 import logging
-import requests
+from . import requests
 
 from . import config
 
