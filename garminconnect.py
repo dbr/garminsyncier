@@ -111,7 +111,7 @@ class GarminConnect(object):
                 raise GarminConnectError("Status code {0.status_code} getting {0.url}: {0.reason}".format(r))
 
 
-            data = r.json                
+            data = r.json()
             for activity in data['results']['activities']:
                 id = activity['activity']['activityId']
                 yield ActivityFile(id)
