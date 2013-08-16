@@ -53,7 +53,7 @@ class ActivityFile(object):
             raise GarminConnectError("Status code {0.status_code} getting {0.url}: {0.reason}".format(r))
 
         # Write file
-        log.info("Saving file to {0}".format(fpath))
+        log.debug("Downloaded file to {0}".format(fpath))
         try:
             with open(fpath, "w+") as f:
                 f.write(r.text)
@@ -87,8 +87,11 @@ class GarminConnect(object):
         r = self.session.post('https://connect.garmin.com/signin',
                               data=params)
 
-        if not r.ok:
-            raise GarminConnectError("Status code {0.status_code} getting {0.url}: {0.reason}".format(r))
+
+
+        if not r.ok and r.status_code > 400:
+            log.debug(r.headers)
+            raise GarminConnectError("Status code {0.status_code} getting {0.url}".format(r))
 
 
     def list_activities(self, start_id = None):
@@ -119,12 +122,12 @@ class GarminConnect(object):
             # Check if we are on the last page
             if 'search' not in data['results']:
                 # No search on first page?
-                log.info("First and only page")
+                log.debug("First and only page")
                 break
             else:
                 currentPage = data['results']['search']['currentPage']
                 totalPages = data['results']['search']['totalPages']
-                log.info("Page {cur} of {total}".format(cur=currentPage, total=totalPages))
+                log.debug("Page {cur} of {total}".format(cur=currentPage, total=totalPages))
                 if currentPage == totalPages:
                     # done
                     break
