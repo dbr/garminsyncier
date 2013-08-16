@@ -1,11 +1,31 @@
-username = "example"
-password = "example"
-userid = 1234
-your_email = "mr@example.org"
+import os as _os
+
+_here = _os.path.dirname(_os.path.abspath(__file__))
+
+# Garmin Connect
+username = "example_garmin_connect_user"
+password = "example_garmin_connect_password"
+userid = 123456 # garmin connect user ID
+
+# Strava upload email (where TCX file is sent)
 strava_upload_email = "upload@strava.com"
-download_dir = _os.path.expanduser("~/Dropbox/from_garmin_connect")
-try:
-    _os.makedirs(download_dir)
-except OSError, e:
-    if e.errno != 17:
-        raise
+
+# Email
+your_email = "fromaddress@example.com" # sender email
+your_email_server = "smtp.gmail.com" # SMTP server
+your_email_port = 587 # SMTP port
+your_email_login = "example_email_username@example.com" # SMTP auth user
+your_email_password = "example_email_password!" # SMTP auth password
+
+# Working locations
+download_dir = _os.path.expanduser(_os.path.join(_here, "../new"))
+sent_dir = _os.path.expanduser(_os.path.join(_here, "../sent"))
+log_dir = _os.path.expanduser(_os.path.join(_here, "../log"))
+
+# Ensure locations exist
+for _x in [download_dir, sent_dir, log_dir]:
+    try:
+        _os.makedirs(_x)
+    except OSError, e:
+        if e.errno != 17:
+            raise
