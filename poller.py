@@ -32,11 +32,22 @@ def grab(opts):
 
     from . import config
 
+    import os
+    existing_ids = [x for x in os.listdir(config.download_dir) if x.endswith(".tcx")]
+    existing_ids += [x for x in os.listdir(config.download_dir) if x.endswith(".gpx")]
+    existing_ids += [x for x in os.listdir(config.sent_dir) if x.endswith(".tcx")]
+    existing_ids += [x for x in os.listdir(config.sent_dir) if x.endswith(".gpx")]
+
+    existing_ids = [int(x.rpartition(".")[0]) for x in existing_ids]
+
     gc = garminconnect.GarminConnect(config.username, config.password)
     gc.login()
     for act in gc.list_activities(start_id = highest_id):
-        try:
-            path = act.download(config.download_dir)
-            log.info("Downloaded {0}".format(path))
-        except garminconnect.ActivityExists, e:
-            log.info(e)
+        if act.id in existing_ids:
+            log.debug("Already downloaded")
+        else:
+            try:
+                path = act.download(config.download_dir)
+                log.info("Downloaded {0}".format(path))
+            except garminconnect.ActivityExists, e:
+                log.warning(e)
