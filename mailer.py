@@ -37,10 +37,10 @@ def _create_email(filepath):
 def _mail_file(filepath):
     log.info("Emailing %s" % filepath)
     session = smtplib.SMTP(config.your_email_server, config.your_email_port)
-    log.info(session.ehlo())
+    log.debug(session.ehlo())
     session.starttls()
     login_result = session.login(config.your_email_login, config.your_email_password)
-    log.info(login_result)
+    log.debug(login_result)
 
     msg = _create_email(filepath)
     session.sendmail(config.your_email, [config.strava_upload_email], msg.as_string())
