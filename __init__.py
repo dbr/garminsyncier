@@ -1,20 +1,18 @@
 import os
 import logging
 import logging.handlers
+from . import config
 
-log = logging.getLogger()
-log.setLevel(logging.DEBUG)
+logging.getLogger("garminsyncier.requests").setLevel(logging.WARNING)
+
+log = logging.getLogger("garminsyncier")
+log.setLevel(logging.INFO)
 
 formatter = logging.Formatter("%(asctime)-15s %(levelname)s %(name)s %(message)s")
 
-handler = logging.handlers.RotatingFileHandler("%s.log" % __name__)
+handler = logging.handlers.RotatingFileHandler(os.path.join(config.log_dir, "%s.log" % __name__))
 handler.setFormatter(formatter)
-handler.setLevel(logging.WARNING)
-log.addHandler(handler)
-
-handler = logging.handlers.RotatingFileHandler(os.path.expanduser("~/%s.log" % __name__))
-handler.setFormatter(formatter)
-handler.setLevel(logging.WARNING)
+handler.setLevel(logging.INFO)
 log.addHandler(handler)
 
 import sys
