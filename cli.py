@@ -22,10 +22,10 @@ def _main():
 
     opts, args = opter.parse_args()
 
-    if args[0] == 'grab':
+    if len(args) > 0 and args[0] == 'grab':
         from .poller import grab
         grab(opts=opts)
-    elif args[0] == 'mail':
+    elif len(args) > 0 and args[0] == 'mail':
         from .mailer import process_files
         process_files(opts=opts)
     else:
