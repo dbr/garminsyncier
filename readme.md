@@ -1,6 +1,6 @@
 # Garmin Connect to Strava auto-uploader
 
-You probably want to use [GarminSync.com](http://www.garminsync.com/)
+You probably want to use [CopyMySports.com](http://www.CopyMySports.com/)
 instead.
 
 This Python-based tool uploads all rides from a Garmin Sync account to
@@ -55,7 +55,7 @@ I was attempting to cycle from Adelaide to Perth, and wanted to upload
 the rides each day onto Strava...
 
 Leaving things quite late, I tried
-[GarminSync.com](http://www.garminsync.com/) a few days before I left,
+[CopyMySports.com](http://www.CopyMySports.com/) a few days before I left,
 but didn't trust it (mostly I didn't know how long it takes to spot
 new rides, and there was no logging when it last tried and so on)
 
