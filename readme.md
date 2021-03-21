@@ -54,10 +54,10 @@ config option)
 I was attempting to cycle from Adelaide to Perth, and wanted to upload
 the rides each day onto Strava...
 
-Leaving things quite late, I tried
-[CopyMySports.com](http://www.CopyMySports.com/) a few days before I left,
-but didn't trust it (mostly I didn't know how long it takes to spot
-new rides, and there was no logging when it last tried and so on)
+Leaving things quite late, I tried the now-defunct GarminSync a few
+days before I left, but didn't trust it (mostly I didn't know how long
+it takes to spot new rides, and there was no logging when it last
+tried and so on)
 
 ..so I wrote my own, simple and robust version if it in an evening.
 
